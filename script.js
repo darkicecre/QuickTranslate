@@ -25,6 +25,25 @@ decodeSimple();
 var a = document.getElementById("decode_multi")
 a.value = "\\uc0c1\\ud488\\ud654\\u0020\\ub300\\uc0c1\\uad00\\ub9ac,\\uad8c\\uc218\\uacbd";
 decodeMulti();
+var a = document.getElementById("timestamp_convert")
+a.value = "1704329564";
+timestampConvertSimple();
+var a = document.getElementById("date_convert")
+a.value = "2024-01-04 07:52:44";
+dateConvertSimple();
+var a = document.getElementById("encrypt_data")
+a.value = "123456";
+var a = document.getElementById("encrypt_cipher")
+a.value = "AES-256-CBC";
+var a = document.getElementById("encrypt_passphrase")
+a.value = "netclover";
+var a = document.getElementById("encrypt_option")
+a.value = "false";
+var a = document.getElementById("encrypt_iv")
+a.value = "1234567891234567";
+var a = document.getElementById("encrypt_result")
+a.value = "Still doing dev";
+
 
 function encodeSimple(){
     var a = document.getElementById("encode_simple").value;
@@ -61,4 +80,37 @@ function decodeMulti(){
     
     var c = document.getElementById("b2_result")
     c.innerHTML = r
+}
+function timestampConvertSimple(){
+    var a = document.getElementById("timestamp_convert").value;
+    var b = document.getElementById("timestamp_result")
+    var date = new Date(parseInt(a)*1000);
+    var month = date.getMonth()+1;
+    var day = date.getDate() ;
+    var hours = date.getHours();
+    var mins = date.getMinutes();
+    var sec = date.getSeconds();
+    if (day < 10) {
+        day = '0' + day;
+    }
+    if (month < 10) {
+        month = `0${month}`;
+    }
+    if (hours < 10) {
+        hours = `0${hours}`;
+    }
+    if (mins < 10) {
+        mins = `0${mins}`;
+    }
+    if (sec < 10) {
+        sec = `0${sec}`;
+    }
+    b.innerText = date.getFullYear() + '-' + month + '-' + day + ' ' + hours + ':' + mins + ':' + sec ;
+}
+function dateConvertSimple(){
+    var a = document.getElementById("date_convert").value;
+    var b = document.getElementById("date_result")
+    var date = new Date(a);
+    var unixTimestamp = Math.floor(date.getTime()/1000);
+    b.innerText = unixTimestamp;
 }

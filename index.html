@@ -9,7 +9,7 @@
 </head>
 <body>
   <div style="width: 100vw; height: 400px;  display: flex">
-    <div style="width: 50vw; height: 400px; display: flex;flex-direction: column;">
+    <div style="width: 50vw; height: 400px; display: flex;flex-direction: column; margin-left: 20px;">
       <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
         <h1>
           Encode Unicode
@@ -34,6 +34,51 @@
           <h1>→</h1>
         </div>
         <div style="width: 45%;" id="a2_result"></div>
+      </div>
+
+      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+        <h1>
+          Convert TimeStamp To Date
+        </h1>
+      </div>
+      <h3>Simple convert unix time to date</h3>
+      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
+        <div style="width: 45%; margin: auto;">
+          <input type="text" name="" id="timestamp_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="timestampConvertSimple()" >
+        </div>
+        <div style="width: 10%;margin: auto; text-align: center;">
+          <h1>→</h1>
+        </div>
+        <div style="width: 45%;" id="timestamp_result"></div>
+      </div>
+
+      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+        <h1>
+          Encode in PHP 
+        </h1>
+      </div>
+      <h3>openssl_encrypt($data, $cipher_algo, $passphrase, $options, $iv )</h3>
+      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
+        <div style="width: 65%; margin: auto;">
+          <div style=" display: flex; align-items: center;">
+            <h5>$data &nbsp;</h5>
+            <input type="text" name="" id="encrypt_data" style="width: 35%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
+            <h5>&nbsp;&nbsp;&nbsp;$cipher_algo &nbsp;</h5>
+            <input type="text" name="" id="encrypt_cipher" style="width: 35%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
+          </div>
+          <div style=" display: flex; align-items: center; margin-top: 5px;">
+            <h5>$passphrase &nbsp;</h5>
+            <input type="text" name="" id="encrypt_passphrase" style="width: 21%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
+            <h5>&nbsp;&nbsp;&nbsp;$options &nbsp;</h5>
+            <input type="text" name="" id="encrypt_option" style="width: 8%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
+            <h5>&nbsp;&nbsp;&nbsp;$iv &nbsp;</h5>
+            <input type="text" name="" id="encrypt_iv" style="width: 32%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
+          </div>
+        </div>
+        <div style="width: 10%;margin: auto; text-align: center;">
+          <h1>→</h1>
+        </div>
+        <div style="width: 45%;" id="encrypt_result"></div>
       </div>
     </div>
 
@@ -63,6 +108,21 @@
           <h1>→</h1>
         </div>
         <div style="width: 45%;" id="b2_result"></div>
+      </div>
+      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+        <h1>
+          Convert Date To TimeStamp
+        </h1>
+      </div>
+      <h3>Simple convert date to unix time</h3>
+      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
+        <div style="width: 45%; margin: auto;">
+          <input type="text" name="" id="date_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="dateConvertSimple()" >
+        </div>
+        <div style="width: 10%;margin: auto; text-align: center;">
+          <h1>→</h1>
+        </div>
+        <div style="width: 45%;" id="date_result"></div>
       </div>
     </div>
 
