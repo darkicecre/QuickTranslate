@@ -1,14 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Translate</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Translate</title>
 </head>
 <body>
-  <div style="width: 100vw; height: 400px;  display: flex">
+    <style>
+        .active{
+            color: #3f50b5
+        }
+    </style>
+    <div class="row gx-3 gx-lg-5" style="margin: 20px 30px;" >
+        <div class="col-1">
+            <ul class="nav nav-tabs nav-tabs-vertical" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="vertical-tab-0" data-bs-toggle="tab" href="#vertical-tabpanel-0" role="tab" aria-controls="vertical-tabpanel-0" aria-selected="true"><i class="fa-solid fa-language" style="color: #3f50b5;"></i> Unicode</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="vertical-tab-1" data-bs-toggle="tab" href="#vertical-tabpanel-1" role="tab" aria-controls="vertical-tabpanel-1" aria-selected="false"><i class="fa-solid fa-clock" style="color: #3f50b5;"></i> Timestamp</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="vertical-tab-2" data-bs-toggle="tab" href="#vertical-tabpanel-2" role="tab" aria-controls="vertical-tabpanel-2" aria-selected="false"><i class="fa-solid fa-code-compare" style="color: #3f50b5;"></i> Compare String</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-11">
+            <div class="tab-content" id="tab-content" aria-orientation="vertical">
+                <div class="tab-pane active" id="vertical-tabpanel-0" role="tabpanel" aria-labelledby="vertical-tab-0">
+                    <div class="row">
+                        <div class="col-6">
+                            <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                                <h3>
+                                    Encode Unicode
+                                </h3>
+                            </div>
+                            <h5>Simple translate</h5>
+                            <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
+                                <div style="width: 45%; margin: auto;">
+                                    <input  class="form-control" type="text" name="" id="encode_simple" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="encodeSimple()" >
+                                </div>
+                                <div style="width: 10%;margin: auto; text-align: center;">
+                                    <h5>→</h5>
+                                </div>
+                                <div style="width: 45%; margin: auto;" id="a1_result"></div>
+                            </div>
+                            <h5>Multi translate - Use Format text,text,... </h5>
+                            <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 20px;">
+                                <div style="width: 45%; margin: auto;">
+                                <textarea class="form-control" name="" cols="52" rows="7" style="font-size: 20px;border: 1px solid #000; max-width: 100%;" id="encode_multi" onkeyup="encodeMulti()"></textarea>
+                                </div>
+                                <div style="width: 10%;margin: auto; text-align: center;">
+                                <h5>→</h5>
+                                </div>
+                                <div style="width: 45%; margin: auto;" id="a2_result"></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
+                                <h3>
+                                    Decode Unicode
+                                </h3>
+                            </div>
+                            <h5>Simple translate</h5>
+                            <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
+                                <div style="width: 45%; margin: auto;">
+                                    <input type="text" class="form-control" name="" id="decode_simple" style="width: 100%; font-size: 20px;border: 1px solid #000;" onchange="decodeSimple()" >
+                                </div>
+                                <div style="width: 10%;margin: auto; text-align: center;">
+                                    <h3>→</h3>
+                                </div>
+                                <div style="width: 45%; margin: auto;" id="b1_result"></div>
+                            </div>
+                            <h3>Multi translate - Use Format \{}\{}.. , \{}... </h3>
+                            <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 20px;">
+                                <div style="width: 45%; margin: auto;">
+                                    <textarea class="form-control" name="" cols="52" rows="7" style="font-size: 20px;border: 1px solid #000;max-width: 100%;" id="decode_multi" onkeyup="decodeMulti()"></textarea>
+                                </div>
+                                <div style="width: 10%;margin: auto; text-align: center;">
+                                    <h3>→</h3>
+                                </div>
+                                <div style="width: 45%; margin: auto;" id="b2_result"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="vertical-tabpanel-1" role="tabpanel" aria-labelledby="vertical-tab-1">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Simple convert unix time to date</h3>
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="" id="timestamp_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="timestampConvertSimple()" >
+                                </div>
+                                <div class="col-1"><h3>→</h3></div>
+                                <div class="col-5" style="display: flex; align-items: center;">
+                                    <div id="timestamp_result" style="font-size: 19px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h3>Convert Date To TimeStamp</h3>
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="text"  class="form-control" name="" id="date_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="dateConvertSimple()" >
+                                </div>
+                                <div class="col-1"><h3>→</h3></div>
+                                <div class="col-5" style="display: flex; align-items: center;">
+                                    <div id="date_result" style="font-size: 19px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="vertical-tabpanel-2" role="tabpanel" aria-labelledby="vertical-tab-2">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- <div style="width: 100vw; height: 400px;  display: flex">
     <div style="width: 50vw; height: 400px; display: flex;flex-direction: column; margin-left: 20px;">
       <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
         <h1>
@@ -126,8 +244,20 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#timestamp a").click(function(e){
+            e.preventDefault();
+            $(this).tab("show");
+        });
+        $("unicode a").click(function(e){
+            e.preventDefault();
+            $(this).tab("show");
+        });
+    });
+    </script>
 </body>
 </html>
