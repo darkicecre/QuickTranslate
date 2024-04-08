@@ -13,6 +13,11 @@ String.prototype.decodeUnicode = function(){
     });
     return res;
 }
+var a = document.getElementById("compare_text_1")
+a.value = "So sanh text dau tien";
+var b = document.getElementById("compare_text_2")
+b.value = "So sanh text dau thu hai";
+compareText();
 var a = document.getElementById("encode_simple")
 a.value = "사고이력";
 encodeSimple();
@@ -31,20 +36,43 @@ timestampConvertSimple();
 var a = document.getElementById("date_convert")
 a.value = "2024-01-04 07:52:44";
 dateConvertSimple();
-var a = document.getElementById("encrypt_data")
-a.value = "123456";
-var a = document.getElementById("encrypt_cipher")
-a.value = "AES-256-CBC";
-var a = document.getElementById("encrypt_passphrase")
-a.value = "netclover";
-var a = document.getElementById("encrypt_option")
-a.value = "false";
-var a = document.getElementById("encrypt_iv")
-a.value = "1234567891234567";
-var a = document.getElementById("encrypt_result")
-a.value = "Still doing dev";
 
-
+function compareText(){
+    var a = document.getElementById("compare_text_1").value;
+    var b = document.getElementById("compare_text_2").value
+    var r_a = document.getElementById("result_compare_text_1");
+    var r_b = document.getElementById("result_compare_text_2")
+    var r_c = document.getElementById("result_compare_text_3")
+    var len = Math.min(a.length,b.length)
+    let redArray = [];
+    var resA = "";
+    var resB = "";
+    var count = 0;
+    for(var i=0;i<len;i++){
+        if(a[i]!=b[i]){
+            resA = resA + '<span class="c-red">'+a[i]+'</span>'
+            resB = resB + '<span class="c-red">'+b[i]+'</span>'
+        }
+        else{
+            resA = resA + '<span class="c-green">'+a[i]+'</span>'
+            resB = resB + '<span class="c-green">'+b[i]+'</span>'
+            count++;
+        }
+    }
+    if(a.length>b.length){
+        for(var i =len;i<a.length;i++){
+            resA = resA + '<span class="c-red">'+a[i]+'</span>'
+        }
+    }
+    if(b.length>a.length){
+        for(var i =len;i<b.length;i++){
+            resB = resB + '<span class="c-red">'+b[i]+'</span>'
+        }
+    }
+    r_c.innerText = Math.round(count*100/Math.max(a.length,b.length)) + " %"
+    r_a.innerHTML = resA;
+    r_b.innerHTML = resB;
+}
 function encodeSimple(){
     var a = document.getElementById("encode_simple").value;
     var b = document.getElementById("a1_result")

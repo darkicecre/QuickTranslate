@@ -2,3 +2,18 @@
   border: 0;
   margin: 0;
 }
+
+.c-green{
+    font-size: 22px;
+    color: #3CAEA3;
+}
+
+.c-red{
+    font-size: 22px;
+    color: #ED553B;
+}
+
+#result_compare_text_3{
+    color: #3CAEA3;
+    font-size: 80px;
+}

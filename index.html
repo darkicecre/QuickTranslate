@@ -21,19 +21,19 @@
         <div class="col-1">
             <ul class="nav nav-tabs nav-tabs-vertical" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="vertical-tab-0" data-bs-toggle="tab" href="#vertical-tabpanel-0" role="tab" aria-controls="vertical-tabpanel-0" aria-selected="true"><i class="fa-solid fa-language" style="color: #3f50b5;"></i> Unicode</a>
+                    <a class="nav-link " id="vertical-tab-0" data-bs-toggle="tab" href="#vertical-tabpanel-0" role="tab" aria-controls="vertical-tabpanel-0" aria-selected="true"><i class="fa-solid fa-language" style="color: #3f50b5;"></i> Unicode</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="vertical-tab-1" data-bs-toggle="tab" href="#vertical-tabpanel-1" role="tab" aria-controls="vertical-tabpanel-1" aria-selected="false"><i class="fa-solid fa-clock" style="color: #3f50b5;"></i> Timestamp</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="vertical-tab-2" data-bs-toggle="tab" href="#vertical-tabpanel-2" role="tab" aria-controls="vertical-tabpanel-2" aria-selected="false"><i class="fa-solid fa-code-compare" style="color: #3f50b5;"></i> Compare String</a>
+                    <a class="nav-link active" id="vertical-tab-2" data-bs-toggle="tab" href="#vertical-tabpanel-2" role="tab" aria-controls="vertical-tabpanel-2" aria-selected="false"><i class="fa-solid fa-code-compare" style="color: #3f50b5;"></i> Compare String</a>
                 </li>
             </ul>
         </div>
         <div class="col-11">
             <div class="tab-content" id="tab-content" aria-orientation="vertical">
-                <div class="tab-pane active" id="vertical-tabpanel-0" role="tabpanel" aria-labelledby="vertical-tab-0">
+                <div class="tab-pane" id="vertical-tabpanel-0" role="tabpanel" aria-labelledby="vertical-tab-0">
                     <div class="row">
                         <div class="col-6">
                             <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
@@ -119,133 +119,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="vertical-tabpanel-2" role="tabpanel" aria-labelledby="vertical-tab-2">
-                    
+                <div class="tab-pane active" id="vertical-tabpanel-2" role="tabpanel" aria-labelledby="vertical-tab-2">
+                    <div class="row">
+                        <div class="col-5">
+                            <h3>Compare string</h3>
+                            <textarea class="form-control" name="" cols="52" rows="13" style="font-size: 20px;border: 1px solid #000; max-width: 100%;resize: none;" id="compare_text_1" onkeyup="compareText()"></textarea>
+                        </div>
+                        <div class="col-5">
+                            <h3>Compare string</h3>
+                            <textarea class="form-control" name="" cols="52" rows="13" style="font-size: 20px;border: 1px solid #000; max-width: 100%;resize: none;" id="compare_text_2" onkeyup="compareText()"></textarea>
+                        </div>
+                        <div class="col-2" style="padding-left: 25px;" id="result_compare_text_3">
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-5" id="result_compare_text_1">
+                        </div>
+                        <div class="col-5" id="result_compare_text_2">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-  <!-- <div style="width: 100vw; height: 400px;  display: flex">
-    <div style="width: 50vw; height: 400px; display: flex;flex-direction: column; margin-left: 20px;">
-      <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-        <h1>
-          Encode Unicode
-        </h1>
-      </div>
-      <h3>Simple translate</h3>
-      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
-        <div style="width: 45%; margin: auto;">
-          <input type="text" name="" id="encode_simple" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="encodeSimple()" >
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="a1_result"></div>
-      </div>
-      <h3>Multi translate - Use Format text,text,... </h3>
-      <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 20px;">
-        <div style="width: 45%; margin: auto;">
-          <textarea name="" cols="52" rows="7" style="font-size: 20px;border: 1px solid #000; max-width: 100%;" id="encode_multi" onkeyup="encodeMulti()"></textarea>
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="a2_result"></div>
-      </div>
-
-      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-        <h1>
-          Convert TimeStamp To Date
-        </h1>
-      </div>
-      <h3>Simple convert unix time to date</h3>
-      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
-        <div style="width: 45%; margin: auto;">
-          <input type="text" name="" id="timestamp_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="timestampConvertSimple()" >
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="timestamp_result"></div>
-      </div>
-
-      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-        <h1>
-          Encode in PHP 
-        </h1>
-      </div>
-      <h3>openssl_encrypt($data, $cipher_algo, $passphrase, $options, $iv )</h3>
-      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
-        <div style="width: 65%; margin: auto;">
-          <div style=" display: flex; align-items: center;">
-            <h5>$data &nbsp;</h5>
-            <input type="text" name="" id="encrypt_data" style="width: 35%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
-            <h5>&nbsp;&nbsp;&nbsp;$cipher_algo &nbsp;</h5>
-            <input type="text" name="" id="encrypt_cipher" style="width: 35%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
-          </div>
-          <div style=" display: flex; align-items: center; margin-top: 5px;">
-            <h5>$passphrase &nbsp;</h5>
-            <input type="text" name="" id="encrypt_passphrase" style="width: 21%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
-            <h5>&nbsp;&nbsp;&nbsp;$options &nbsp;</h5>
-            <input type="text" name="" id="encrypt_option" style="width: 8%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
-            <h5>&nbsp;&nbsp;&nbsp;$iv &nbsp;</h5>
-            <input type="text" name="" id="encrypt_iv" style="width: 32%; font-size: 20px; border: 1px solid #000;" onchange="encrypt()" >
-          </div>
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="encrypt_result"></div>
-      </div>
-    </div>
-
-
-    <div style="width: 50vw; height: 400px;  display: flex;flex-direction: column;">
-      <div style="display: flex; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-        <h1>
-          Decode Unicode
-        </h1>
-      </div>
-      <h3>Simple translate</h3>
-      <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
-        <div style="width: 45%; margin: auto;">
-          <input type="text" name="" id="decode_simple" style="width: 100%; font-size: 20px;border: 1px solid #000;" onchange="decodeSimple()" >
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="b1_result"></div>
-      </div>
-      <h3>Multi translate - Use Format \{}\{}.. , \{}... </h3>
-      <div style="width: 100%; height: 40px;  display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 20px;">
-        <div style="width: 45%; margin: auto;">
-          <textarea name="" cols="52" rows="7" style="font-size: 20px;border: 1px solid #000;max-width: 100%;" id="decode_multi" onkeyup="decodeMulti()"></textarea>
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="b2_result"></div>
-      </div>
-      <div style="display: flex; margin-top: 150px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
-        <h1>
-          Convert Date To TimeStamp
-        </h1>
-      </div>
-      <h3>Simple convert date to unix time</h3>
-      <div style="width: 100%; height: 40px;   display: flex;flex-direction: row; margin-top: 10px; margin-bottom: 60px;">
-        <div style="width: 45%; margin: auto;">
-          <input type="text" name="" id="date_convert" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="dateConvertSimple()" >
-        </div>
-        <div style="width: 10%;margin: auto; text-align: center;">
-          <h1>→</h1>
-        </div>
-        <div style="width: 45%;" id="date_result"></div>
-      </div>
-    </div>
-
-  </div> -->
-
     <script src="script.js"></script>
     <script>
     $(document).ready(function(){
