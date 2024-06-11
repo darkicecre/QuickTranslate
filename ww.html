@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .box-2{
+            padding: 20px;
+            width: 100px;
+            margin-top: 10px;
+            margin-left: 0px;
+
+        }
+        .box{
+            padding: 20px;
+            border: 1px solid #000;
+            width: 300px;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+        .flex{
+            display: flex;
+            height: 40px;
+        }
+        input{
+            height: 20px;
+            margin: auto 10px;
+        }
+        h5{
+            height: 20px;
+            margin: auto 10px;
+            width: 22px;
+        }
+        .bb{
+            border-bottom: 1px solid #511;
+            border-top: 1px solid #511;
+            padding-top: 5px;
+            color: #511;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
+    <div class="flex" style="height: 220px;">
+        <div class="box">
+            <div class="flex">
+                <h5>LF</h5>
+                <input type="number" name="" id="lf" value="150">
+            </div>
+            <div class="flex">
+                <h5>MF</h5>
+                <input type="number" name="" id="mf" value="15">
+            </div>
+            <div class="flex">
+                <h5>HF</h5>
+                <input type="number" name="" id="hf" value="20">
+            </div>
+            <div class="flex">
+                <h5>FF</h5>
+                <input type="number" name="" id="ff" value="4">
+            </div>
+        </div>
+        <div class="box-2">
+            <div class="flex">
+                <h5 class="bb" id="clf">30</h5>
+            </div>
+            <div class="flex" style="margin-left: 40px;">
+                <h5 class="bb" id="cmf">30</h5>
+            </div>
+            <div class="flex" style="margin-left: 80px;">
+                <h5 class="bb" id="chf">30</h5>
+            </div>
+        </div>
+        <div class="box">
+            <div class="flex">
+                <h5>LF</h5>
+                <input type="number" name="" id="rlf" value="150" readonly>
+            </div>
+            <div class="flex">
+                <h5>MF</h5>
+                <input type="number" name="" id="rmf" value="15" readonly>
+            </div>
+            <div class="flex">
+                <h5>HF</h5>
+                <input type="number" name="" id="rhf" value="20" readonly>
+            </div>
+            <div class="flex">
+                <h5>FF</h5>
+                <input type="number" name="" id="rff" value="4" readonly>
+            </div>
+        </div>
+    </div>
+    <button style="margin-left: 440px; margin-top: 20px; padding-left: 20px; padding-right: 20px;" onclick="test()">Cal</button>
+    <script>
+        function test(){
+            var lf = document.getElementById('lf').value;
+            var mf = document.getElementById('mf').value;
+            var hf = document.getElementById('hf').value;
+            var ff = document.getElementById('ff').value;
+            var rlfe = document.getElementById('rlf');
+            var rmfe = document.getElementById('rmf');
+            var rhfe = document.getElementById('rhf');
+            var rffe = document.getElementById('rff');
+            var clf = document.getElementById('clf');
+            var cmf = document.getElementById('cmf');
+            var chf = document.getElementById('chf');
+            var cff = document.getElementById('cff');
+            var total = Math.floor(lf) + Math.floor(mf)*3 + Math.floor(hf)*9 + Math.floor(ff)*27;
+            console.log(total)
+            rlf.value = Math.floor(total/40);
+            rmf.value = Math.floor(total/40);
+            rhf.value = Math.floor(total/40);
+            rff.value = Math.floor(total/40);
+            var d = (total - rlf.value-rmf.value*3-rhf.value*9-rff.value*27)
+            rlf.value = Math.floor(rlf.value) +Math.floor(d);
+            clf.innerHTML = (lf - rlf.value)/3
+            cmf.innerHTML = (Math.floor(mf) + (lf - rlf.value)/3 - rmf.value)/3
+            chf.innerHTML = (Math.floor(hf) + Math.floor(cmf.innerHTML) - rhf.value)/3
+
+        }
+        test()
+    </script>
+</body>
+</html>
