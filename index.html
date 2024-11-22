@@ -27,6 +27,9 @@
                     <a class="nav-link" id="vertical-tab-4" data-bs-toggle="tab" href="#vertical-tabpanel-4" role="tab" aria-controls="vertical-tabpanel-4" aria-selected="true"><i class="fa-solid fa-key" style="color: #3f50b5;"></i> Groupware Hash</a>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="vertical-tab-5" data-bs-toggle="tab" href="#vertical-tabpanel-5" role="tab" aria-controls="vertical-tabpanel-5" aria-selected="true"><i class="fa-solid fa-terminal" style="color: #3f50b5;"></i> Fast terminal</a>
+                </li>
+                <li class="nav-item" role="presentation">
                     <a class="nav-link" id="vertical-tab-1" data-bs-toggle="tab" href="#vertical-tabpanel-1" role="tab" aria-controls="vertical-tabpanel-1" aria-selected="false"><i class="fa-solid fa-clock" style="color: #3f50b5;"></i> Timestamp</a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -143,6 +146,84 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane" id="vertical-tabpanel-5" role="tabpanel" aria-labelledby="vertical-tab-5">
+                  <div class="row">
+                      <div class="col-12">
+                          <h3>Check SQL Log</h3>
+
+                          <div class="row">
+
+                            <div class="col-4" style="text-align: center;"> Domain</div>
+                            <div class="col-4" style="text-align: center;"> SSH Account</div>
+                            <div class="col-4" style="text-align: center; display: flex;"> 
+                              <div class="col-6" style="margin: auto;">From</div>
+                              <div class="col-6" style="margin: auto;">To</div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-4" style="align-items: center; display: flex;">
+                                <select name="" id="sql_log_domain" onchange="sql_log_change_domain()" style="margin: auto;">
+                                    <option value="kgm">kgmcpo.kg-mobility.com</option>
+                                    <option value="kolon" selected>admin.702pickplus.co.kr</option>
+                                </select>
+                              </div>
+                              <div class="col-4" style="align-items: center;display: flex;">
+                                <select name="" id="sql_log_account" style="margin: auto;"  onchange="sql_log_change()">
+                                </select>
+                              </div>
+                              <div class="col-4" style="align-items: center;display: flex;">
+                                <div class="col-6">
+                                  <input type="text" class="form-control" name="" id="sql_log_from" style="width: 90%; font-size: 20px; border: 1px solid #000;" onchange="sql_log_change()" >
+                                </div>
+                                <div class="col-6">
+                                  <input type="text" class="form-control" name="" id="sql_log_to" style="width: 90%; font-size: 20px; border: 1px solid #000;" onchange="sql_log_change()" >
+                                </div>
+                              </div>
+                          </div>
+
+                          <div class="row" style="margin-top: 20px;" id="sql_log_res">
+                            
+                          </div>
+
+                      </div>
+                  </div>
+                  <div class="row" style="margin-top: 1cm;">
+                      <div class="col-12">
+                          <h3>Get Table Backup</h3>
+
+                          <div class="row">
+
+                            <div class="col-3" style="text-align: center;"> Domain</div>
+                            <div class="col-2" style="text-align: center;"> SSH Account</div>
+                            <div class="col-4" style="text-align: center;"> Table</div>
+                            <div class="col-3" style="text-align: center;"> Date</div>
+                          </div>
+                          <div class="row">
+                              <div class="col-3" style="align-items: center; display: flex;">
+                                <select name="" id="backup_domain" onchange="backup_change_domain()" style="margin: auto;">
+                                    <option value="kgm">kgmcpo.kg-mobility.com</option>
+                                    <option value="kolon" selected>admin.702pickplus.co.kr</option>
+                                </select>
+                              </div>
+                              <div class="col-2" style="align-items: center;display: flex;">
+                                <select name="" id="backup_account" style="margin: auto;"  onchange="backup_change()">
+                                </select>
+                              </div>
+                              <div class="col-4" style="align-items: center;display: flex;">
+                                <input type="text" class="form-control" name="" id="backup_table" style="width: 90%; font-size: 20px; border: 1px solid #000;" onchange="backup_change()" >
+                              </div>
+                              <div class="col-3" style="align-items: center;display: flex;">
+                                <input type="text" class="form-control" name="" id="backup_date" style="width: 90%; font-size: 20px; border: 1px solid #000;" onchange="backup_change()" >
+                              </div>
+                          </div>
+
+                          <div class="row" style="margin-top: 20px;" id="backup_res">
+                            
+                          </div>
+
+                      </div>
+                  </div>
                 </div>
                 <div class="tab-pane " id="vertical-tabpanel-2" role="tabpanel" aria-labelledby="vertical-tab-2">
                     <div class="row">

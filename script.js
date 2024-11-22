@@ -41,6 +41,115 @@ var a = document.getElementById("groupware_string")
 a.value = "b02b48f8297895c4edb4c82b70ee1b04d5620ff9a35e993d5dbe1302b849e204a9570ead85ec3235e5191049cfefddaf";
 decodeGroupwareString()
 
+var a = document.getElementById("sql_log_to")
+var date = new Date();
+a.value = date.toISOString().split('T')[0].replaceAll('-','')
+date.setDate(date.getDate() - 1);
+var a = document.getElementById("sql_log_from")
+a.value = date.toISOString().split('T')[0].replaceAll('-','')
+
+var a = document.getElementById("backup_table")
+a.value = 'crm_purchase_product'
+var a = document.getElementById("backup_date")
+a.value = date.toISOString().split('T')[0].replaceAll('-','')
+
+sql_log_change_domain()
+backup_change_domain()
+
+function sql_log_change_domain(){
+  var a = document.getElementById("sql_log_domain").value
+  var b = document.getElementById("sql_log_account")
+  if(a=='kgm'){
+    b.innerHTML='<option value="vsweb">vsweb</option>'
+  }
+  else if (a=='kolon'){
+    b.innerHTML='<option value="duy.nguyennhat">duy</option><option value="canhnguyen">canh</option><option value="thinh.lequoc">Q.Thinh</option>'
+  }
+  sql_log_change()
+}
+function backup_change_domain(){
+  var a = document.getElementById("backup_domain").value
+  var b = document.getElementById("backup_account")
+  if(a=='kgm'){
+    b.innerHTML='<option value="vsweb">vsweb</option>'
+  }
+  else if (a=='kolon'){
+    b.innerHTML='<option value="duy.nguyennhat">duy</option><option value="canhnguyen">canh</option><option value="thinh.lequoc">Q.Thinh</option>'
+  }
+  backup_change()
+}
+
+function backup_change(){
+  var a = document.getElementById("backup_domain").value
+  var c = document.getElementById("backup_account").value
+  var f = document.getElementById("backup_table").value
+  var t = document.getElementById("backup_date").value
+  var r = document.getElementById("backup_res")
+  var s = [];
+  if(a=='kgm'){
+    s.push('ssh -oHostKeyAlgorithms=+ssh-rsa vsweb@150.1.54.179')
+    s.push('sftp -oHostKeyAlgorithms=+ssh-rsa vsweb@150.1.54.179')
+    s.push('su -');
+    s.push('rsync -av --progress /home/DUMP/'+t+'_22/kgmcpokg_mobilitycom/DATA/'+f+'.sql /home/vsweb/a57.txt');
+    s.push('get a57.txt');
+    
+  }
+  else if(a=='kolon'){
+    s.push('ssh '+c+'@admin.702pickplus.co.kr')
+    s.push('sftp '+c+'@admin.702pickplus.co.kr')
+    s.push('sudo su -');
+    s.push('rsync -av --progress /home/DUMP/'+t+'_22/kgmcpokg_mobilitycom/DATA/'+f+'.sql /home/vsweb/a57.txt');
+    s.push('get a57.txt');
+  }
+  var rr = ''
+  for(var i=0;i<s.length;i++){
+    rr = rr + '<div style="display:flex; margin-bottom:5px;" id="backup_res_'+i+'"><button style="margin-right:10px;" onclick="backup_res_btn('+i+')"><i class="fa-solid fa-copy" style="color: #3f50b5;"></i> </button><div id="backup_res_text_'+i+'">'+s[i]+'</div></div>'
+  }
+  r.innerHTML=rr;
+}
+
+function sql_log_change(){
+  var a = document.getElementById("sql_log_domain").value
+  var c = document.getElementById("sql_log_account").value
+  var f = document.getElementById("sql_log_from").value
+  var t = document.getElementById("sql_log_to").value
+  var r = document.getElementById("sql_log_res")
+  var s = [];
+  if(a=='kgm'){
+    s.push('ssh -oHostKeyAlgorithms=+ssh-rsa vsweb@150.1.54.179')
+    s.push('sftp -oHostKeyAlgorithms=+ssh-rsa vsweb@150.1.54.179')
+    s.push('su -');
+    s.push('cd /home/HanbiroMailcore/GWDATA/kgmcpo.kg-mobility.com/queue/');
+    s.push('rsync -av --progress sync.que zsync.log.23')
+    s.push('/usr/local/bin/php /home/HanbiroMailcore/sync/queutil.php zsync.log.23 -from '+f+' -to '+t+' > a56.txt')
+    s.push('mv a56.txt /home/vsweb')
+    s.push('get a56.txt')
+  }
+  else if(a=='kolon'){
+    s.push('ssh '+c+'@admin.702pickplus.co.kr')
+    s.push('sftp '+c+'@admin.702pickplus.co.kr')
+    s.push('sudo su - && cd /home/HanbiroMailcore/GWDATA/admin.702pickplus.co.kr/queue/ && rsync -av --progress sync.que zsync.log.23')
+    s.push('/usr/local/bin/php /home/HanbiroMailcore/sync/queutil.php zsync.log.23 -from '+f+' -to '+t+' > a56.txt')
+    s.push('mv a56.txt /home/'+c)
+    s.push('get a56.txt')
+  }
+  var rr = ''
+  for(var i=0;i<s.length;i++){
+    rr = rr + '<div style="display:flex; margin-bottom:5px;" id="sql_log_res_'+i+'"><button style="margin-right:10px;" onclick="sql_log_res_btn('+i+')"><i class="fa-solid fa-copy" style="color: #3f50b5;"></i> </button><div id="sql_log_res_text_'+i+'">'+s[i]+'</div></div>'
+  }
+  r.innerHTML=rr;
+  
+}
+
+function sql_log_res_btn(i){
+  var a = document.getElementById("sql_log_res_text_"+i).innerText
+  console.log(a)
+  navigator.clipboard.writeText(a)
+}
+function backup_res_btn(i){
+  var a = document.getElementById("backup_res_text_"+i).innerText
+  navigator.clipboard.writeText(a)
+}
 function compareText(){
     var a = document.getElementById("compare_text_1").value;
     var b = document.getElementById("compare_text_2").value
