@@ -37,6 +37,10 @@ var a = document.getElementById("date_convert")
 a.value = "2024-01-04 07:52:44";
 dateConvertSimple();
 
+var a = document.getElementById("groupware_string")
+a.value = "b02b48f8297895c4edb4c82b70ee1b04d5620ff9a35e993d5dbe1302b849e204a9570ead85ec3235e5191049cfefddaf";
+decodeGroupwareString()
+
 function compareText(){
     var a = document.getElementById("compare_text_1").value;
     var b = document.getElementById("compare_text_2").value
@@ -134,6 +138,25 @@ function timestampConvertSimple(){
         sec = `0${sec}`;
     }
     b.innerText = date.getFullYear() + '-' + month + '-' + day + ' ' + hours + ':' + mins + ':' + sec ;
+}
+function decodeGroupwareString(){
+    var a = document.getElementById("groupware_string").value;
+    var b = document.getElementById("groupware_result")
+    fetch('https://hanbirosoft.hanbiro.net/ngw2/netclover/decode/'+a)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if(data && data.data){
+        b.innerText = data.data
+      }
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
 }
 function dateConvertSimple(){
     var a = document.getElementById("date_convert").value;

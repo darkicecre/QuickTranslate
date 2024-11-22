@@ -24,6 +24,9 @@
                     <a class="nav-link active" id="vertical-tab-0" data-bs-toggle="tab" href="#vertical-tabpanel-0" role="tab" aria-controls="vertical-tabpanel-0" aria-selected="true"><i class="fa-solid fa-language" style="color: #3f50b5;"></i> Unicode</a>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="vertical-tab-4" data-bs-toggle="tab" href="#vertical-tabpanel-4" role="tab" aria-controls="vertical-tabpanel-4" aria-selected="true"><i class="fa-solid fa-key" style="color: #3f50b5;"></i> Groupware Hash</a>
+                </li>
+                <li class="nav-item" role="presentation">
                     <a class="nav-link" id="vertical-tab-1" data-bs-toggle="tab" href="#vertical-tabpanel-1" role="tab" aria-controls="vertical-tabpanel-1" aria-selected="false"><i class="fa-solid fa-clock" style="color: #3f50b5;"></i> Timestamp</a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -120,6 +123,22 @@
                                 <div class="col-1"><h3>→</h3></div>
                                 <div class="col-5" style="display: flex; align-items: center;">
                                     <div id="date_result" style="font-size: 19px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="vertical-tabpanel-4" role="tabpanel" aria-labelledby="vertical-tab-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Enter security string</h3>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="" id="groupware_string" style="width: 100%; font-size: 20px; border: 1px solid #000;" onchange="decodeGroupwareString()" >
+                                </div>
+                                <div class="col-1"><h3>→</h3></div>
+                                <div class="col-2" style="display: flex; align-items: center;">
+                                    <div id="groupware_result" style="font-size: 19px;"></div>
                                 </div>
                             </div>
                         </div>
