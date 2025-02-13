@@ -202,6 +202,12 @@ async function decryptSimple(){
   b.innerHTML = JSON.stringify(myJson).replaceAll(',"',',<br/>"');
   console.log(myJson)
 }
+function adecryptSimple(){
+  var a = document.getElementById("decrypt_simple").value;
+  var b = "http://211.234.116.228:7013/api/dev/bidding?key=" + a
+
+  navigator.clipboard.writeText(b)
+}
 function encodeMulti(){
     var a = document.getElementById("encode_multi").value;
     var b = a.split(',');
