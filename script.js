@@ -36,6 +36,9 @@ timestampConvertSimple();
 var a = document.getElementById("date_convert")
 a.value = "2024-01-04 07:52:44";
 dateConvertSimple();
+var a = document.getElementById("decrypt_simple")
+a.value = "S2FJN2JKZy91NEE3NzU2K1NaZTZmMFJlMmY0a3pGNDJ1UWoxRmtRU2M0Tk5ReWdDWFZLNmFjeU1FbW50d1kyVnhGVUtUVW9weklaZXZtVlZRQS9EWUFSSHVVd2pFRFVwajJDUkIwck80WGVicTA4SGxWMjNHb1NzQTBUZXlRaGZFaGNjdHVtNERNeGwvWnFaM3h5c2h5bERkeklaTlFkeWtaMXNORHhKbVl0NG8vZU5PUFVjWG8vYldnMDMzN2Yw";
+decryptSimple();
 
 var a = document.getElementById("groupware_string")
 a.value = "b02b48f8297895c4edb4c82b70ee1b04d5620ff9a35e993d5dbe1302b849e204a9570ead85ec3235e5191049cfefddaf";
@@ -190,6 +193,14 @@ function encodeSimple(){
     var a = document.getElementById("encode_simple").value;
     var b = document.getElementById("a1_result")
     b.innerText = a.encodeUnicode();
+}
+async function decryptSimple(){
+  var a = document.getElementById("decrypt_simple").value;
+  const response = await fetch('http://211.234.116.228:7013/api/dev/bidding?key=S2FJN2JKZy91NEE3NzU2K1NaZTZmMFJlMmY0a3pGNDJ1UWoxRmtRU2M0Tk5ReWdDWFZLNmFjeU1FbW50d1kyVnhGVUtUVW9weklaZXZtVlZRQS9EWUFSSHVVd2pFRFVwajJDUkIwck80WGVicTA4SGxWMjNHb1NzQTBUZXlRaGZFaGNjdHVtNERNeGwvWnFaM3h5c2h5bERkeklaTlFkeWtaMXNORHhKbVl0NG8vZU5PUFVjWG8vYldnMDMzN2Yw');
+  const myJson = await response.json();
+  var b = document.getElementById("d1_result");
+  b.innerHTML = JSON.stringify(myJson).replaceAll(',"',',<br/>"');
+  console.log(myJson)
 }
 function encodeMulti(){
     var a = document.getElementById("encode_multi").value;
